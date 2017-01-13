@@ -21,7 +21,7 @@ Part of the reason I wrote this extension was because it feels weird clicking OK
 
 By writing my own plugin, I know for sure that it isn't tracking me or doing any other nefarious business (at least not intentionally) Open sourcing the thing allows you to take a look at the code and install it locally so you too are sure it only does what it says on the tin.
 
-But hey, if you want to roll the dice (or 5 star this thing), it's [on the Chrome Webstore here](tbd).
+But hey, if you want to roll the dice (or 5 star this thing), it's [on the Chrome Webstore here](https://chrome.google.com/webstore/detail/onward/jloeebmoepejjjalnmppbbgklclomhoj).
 
 ## Customizing
 
