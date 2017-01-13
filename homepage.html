@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Onward!</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+
+	<div class="blocked-message">
+		Doh! You've chosen to block that site until you've completed the tasks below.
+	</div>
+
+	<div class="header">
+		Today is a good day!
+	</div>
+
+	<!--  To Do List -->
+	<div>
+		<ul class="taskList">
+		</ul>
+	</div>
+
+	<!-- Message displayed once To Do list is complete -->
+	<div class="all-tasks-complete">
+		Awesome, you finished your daily tasks!
+	</div>
+
+	<!-- Add Task UI -->
+	<div class="addTask">
+		<div class="addTaskBtnContainer">
+			<a class="addTaskBtn" href="#">+ Add Task</a>
+		</div>
+		<div class="addTaskFormContainer">
+			<form>
+				<input class="addTaskInput" type="text" /><input class="addTaskSubmit" type="submit" value="Add" />
+			</form>
+		</div>
+	</div>
+
+	<!-- Add blocked URIs UI -->
+	<div class="blockURLsUI">
+		<form>
+			<textarea class="blockerURLsTextArea" cols="40" rows="8"></textarea>
+			<br />
+			<input class="blockedURLsFormSubmit" type="submit" value="Set Blocked URLs">
+		</form>
+	</div>
+
+	<!-- Other options UI -->
+	<div class="other-options">
+		<a class="restartDefaultTasksBtn" href="#">Undo All Tasks</a> • 
+		<a class="blockingToggleBtn" href="#">Disable Blocking</a> • 
+		<a class="blockedSitesListBtn" href="#">Blocked Sites</a>
+	</div>
+
+</div>
+
+<script type="text/javascript" src="homepage.js"></script>
+</body>
+</html>

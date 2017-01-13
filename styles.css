@@ -1,0 +1,116 @@
+html {
+	background: url('background.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+body {
+	color: #fff;
+	font-weight: bold;
+}
+ul {
+	list-style: none;
+	padding: 0;
+}
+li {
+	font-size: 26px;
+	text-shadow: 1px 1px 1px #222;
+	padding: 16px 22px 16px 22px;
+	margin: 12px auto;
+	width: 60%;
+
+	background-color: #336699;
+	background-color: rgba(51,102,153, 0.5);
+	border: 1px solid #336699;
+	border-radius: 10px;
+}
+li:hover {
+	cursor: pointer;
+	background-color: #ddddd;
+	background-color: rgba(255, 255, 255, 0.75);
+	color: #000;
+	text-shadow: 1px 1px 1px #ccc;
+}
+a {
+	font-size: 18px;
+	color: #a0a0ff;
+	text-decoration: none;
+}
+a:hover {
+	color: #0000ff;
+}
+.container {
+	margin: 40px 60px 30px 60px;
+	padding: 30px 60px 30px 60px;
+	border-radius: 16px;
+	background-color: rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 30px 30px rgba(0, 0, 0, 0.1);
+}
+.link-to-delete-task {
+	position: relative;
+	right: 0;
+	bottom: 14px;
+	float: right;
+	font-size: 12px;
+}
+.link-to-delete-task-hidden {
+	display: none;
+}
+.header {
+	font-size: 22px;
+	text-shadow: 1px 1px 1px #222;
+	text-align: center;
+	margin-bottom: 50px;
+}
+.blocked-message {
+	color: #ff0000;
+	font-size: 24px;
+	text-shadow: 1px 1px 1px #000, -1px -1px 1px #000, 1px -1px 1px #000, -1px 1px 1px #000;
+	text-align: center;
+	margin-bottom: 50px;
+	background-color: #000;
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 8px;
+	padding: 12px;
+}
+.blockURLsUI {
+	position: fixed;
+	bottom: 30px;
+	right: 4px;
+	background-color: #ccc;
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 5px;
+	padding: 12px;
+}
+.blockedURLsFormSubmit {
+	float: right;
+}
+.all-tasks-complete {
+	text-align: center;
+	text-shadow: 2px 2px 2px #222;
+	font-size: 30px;
+	margin: 80px;
+}
+.addTask {
+	position: fixed;
+	bottom: 8px;
+	left: 8px;
+}
+.addTaskInput, .addTaskSubmit {
+	font-size: 22px;
+	margin-right: 6px;
+}
+.other-options {
+	position: fixed;
+	bottom: 8px;
+	right: 8px;
+}
+.other-options a, .addTaskBtnContainer a {
+	font-size: 18px;
+	color: #aaa;
+	text-shadow: 1px 1px 1px #222;
+}
+.other-options a:hover, .addTaskBtnContainer a:hover {
+	color: #fff;
+}
