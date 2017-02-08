@@ -135,6 +135,8 @@ function turnOnBlocking() {
 	chrome.runtime.sendMessage({'blockingStatus': 'on' });
 	chrome.storage.local.get('blockedSitesArray', function(returnValue) {
 		chrome.webRequest.onBeforeRequest.addListener( blockSites, { urls: returnValue.blockedSitesArray }, ['blocking'] );
+		console.log("error?");
+		console.log(chrome.runtime.lastError);
 	});
 }
 

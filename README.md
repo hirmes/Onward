@@ -35,11 +35,11 @@ But hey, if you want to roll the dice (or 5 star this thing), it's [on the Chrom
 ## What Onward! is not
 
 * A full featured To Do List app. Lord knows the world doesn't need another one of those.
-* Dependent on external Javascript libraries. This makes it easier to interrigate the codebase to make sure it's not doing anything evil.
+* Dependent on external Javascript libraries. This makes it easier to interrogate the codebase to make sure it's not doing anything evil.
 * Bug free.  In fact, it's probably pretty easy to break it. Sorry.
 
 ## Product Roadmap
  
 This product is finished.  New versions will be pushed if bugs are found.  If you want more features, fork.
 
-Hope you find this extension useful.  Studies show extended use makes thoughless surfing up to *37% less guilt enducing*!
+Hope you find this extension useful.  Studies show extended use makes thoughtless surfing up to *37% less guilt inducing*!
