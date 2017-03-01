@@ -27,15 +27,17 @@ function reorderTasks(oldIndex,newIndex) {
 		var tasks = returnValue.todaysTaskArray,
 			taskToMove = tasks.splice(oldIndex,1);
 
-		tasks.splice(newIndex, 0, taskToMove);
+		tasks.splice(newIndex, 0, taskToMove[0]);
 
 		chrome.storage.local.set({'todaysTaskArray':tasks});
 		
 		chrome.storage.local.get('dailyTaskArray', function(returnValue) {
 			var dailyTasks = returnValue.dailyTaskArray;
-			if ( tasks.length !== dailyTasks.length ) return; // only save the reorder to the permanent store if they are of equal length
+			if ( tasks.length === dailyTasks.length ) { // only save the reorder to the permanent store if they are of equal length
+				chrome.storage.local.set({'dailyTaskArray':tasks});
+			}
 
-			chrome.storage.local.set({'dailyTaskArray':tasks});
+			sendTasksToPage(tasks);
 		});
 	});    
 
