@@ -114,3 +114,7 @@ a:hover {
 .other-options a:hover, .addTaskBtnContainer a:hover {
 	color: #fff;
 }
+
+.sortable-drag {
+	opacity: 0.5;
+}

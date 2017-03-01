@@ -11,13 +11,35 @@ var kFirstRunTaskMsg = 'Create a task with the \'Add Task\' button below',
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
 	if ( request.taskCompleted )            completeTask(request.taskCompleted);
+
 	if ( request.action == 'newPage' )      newPage();
 	if ( request.action == 'resetTasks' )   resetTasksToDefaultsAndSendToPage();
 	if ( request.action == 'toggleBlocking' ) toggleBlocking();
+	if ( request.action == 'reorder' )		reorderTasks(request.oldIndex,request.newIndex);
+
 	if ( request.addTask )                  addTask(request.addTask);
 	if ( request.deleteTask )               deleteTask(request.deleteTask);
 	if ( request.updateBlockedList )        updateBlockedList(request.updateBlockedList);
 });
+
+function reorderTasks(oldIndex,newIndex) {
+	chrome.storage.local.get('todaysTaskArray', function(returnValue) {
+		var tasks = returnValue.todaysTaskArray,
+			taskToMove = tasks.splice(oldIndex,1);
+
+		tasks.splice(newIndex, 0, taskToMove);
+
+		chrome.storage.local.set({'todaysTaskArray':tasks});
+		
+		chrome.storage.local.get('dailyTaskArray', function(returnValue) {
+			var dailyTasks = returnValue.dailyTaskArray;
+			if ( tasks.length !== dailyTasks.length ) return; // only save the reorder to the permanent store if they are of equal length
+
+			chrome.storage.local.set({'dailyTaskArray':tasks});
+		});
+	});    
+
+}
 
 function addTask(task) {
 	chrome.storage.local.get('todaysTaskArray', function(returnValue) {

@@ -117,6 +117,13 @@ function populateTaskList(tasks,blocked) {
 		});
 	});
 	document.querySelector('.blockerURLsTextArea').value = blocked.join('\n') + '\n';
+
+	var sortable = Sortable.create(list, {
+		animation: 150,
+		onEnd: function(evt){ chrome.runtime.sendMessage({ 'action': 'reorder', 'oldIndex': evt.oldIndex, 'newIndex': evt.newIndex });
+		}
+	});
+
 }
 
 // Init
