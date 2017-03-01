@@ -70,6 +70,7 @@ function addTask(task) {
 // It will come back tomorrow.
 //
 function completeTask(task) {
+	task = unescape(task);
 	chrome.storage.local.get('todaysTaskArray', function(returnValue) {
 		var tasks = returnValue.todaysTaskArray,
 			index = tasks.indexOf(task);
