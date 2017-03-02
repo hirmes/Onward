@@ -1,5 +1,11 @@
 // extension_logic.js is loaded as a background script and handles app logic and storage
 
+// Utils
+// 
+Array.prototype.diff = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) < 0;});
+};
+
 // Globals
 // 
 var kFirstRunTaskMsg = 'Create a task with the \'Add Task\' button below',
@@ -75,7 +81,9 @@ function completeTask(task) {
 		var tasks = returnValue.todaysTaskArray,
 			index = tasks.indexOf(task);
 		tasks.splice(index, 1);
-		chrome.storage.local.set({'todaysTaskArray':tasks});
+		chrome.storage.local.set({'todaysTaskArray':tasks}, function() {
+			sendTasksToPage(tasks);
+		});
 		if ( tasks.length == 0 ) {
 			chrome.runtime.sendMessage({'action': 'tasksCompleted'});
 			turnOffBlocking();
@@ -135,16 +143,22 @@ function newPage() {
 
 function sendTasksToPage(tasks) {
 	chrome.storage.local.get('blockedSitesArray', function(returnValue) {
-		chrome.runtime.sendMessage({'taskList': tasks, blockedList: returnValue.blockedSitesArray});
+		var blockedSitesArray = returnValue.blockedSitesArray;
+		chrome.storage.local.get('dailyTaskArray', function(returnValue) {
+			var dailyTasks = returnValue.dailyTaskArray,
+				diff = dailyTasks.diff(tasks);
+			chrome.runtime.sendMessage({'taskList': tasks, 'completedTaskList': diff, 'blockedList': blockedSitesArray });
+		});
 	});
 }
 
 // User has clicked the "Undo All Tasks" button
 function resetTasksToDefaultsAndSendToPage() {
 	chrome.storage.local.get('dailyTaskArray', function(returnValue) {
-		chrome.storage.local.set({'todaysTaskArray':returnValue.dailyTaskArray});
-		sendTasksToPage(returnValue.dailyTaskArray);
-		turnOnBlocking();
+		chrome.storage.local.set({'todaysTaskArray':returnValue.dailyTaskArray}, function() {
+			sendTasksToPage(returnValue.dailyTaskArray);
+			turnOnBlocking();
+		});
 	});
 }
 

@@ -32,6 +32,9 @@ li:hover {
 	color: #000;
 	text-shadow: 1px 1px 1px #ccc;
 }
+.completed-task {
+	background-color: rgba(0,255,0,0.25);
+}
 a {
 	font-size: 18px;
 	color: #a0a0ff;

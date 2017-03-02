@@ -48,7 +48,7 @@ document.querySelector('.blockedURLsFormSubmit').addEventListener('click', funct
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
 	if ( Array.isArray(request.taskList) ) {
-		populateTaskList(request.taskList,request.blockedList);
+		populateTaskList(request.taskList,request.completedTaskList,request.blockedList);
 	}
 	if ( request.blockedList) {
 		document.querySelector('.blockerURLsTextArea').value = request.blockedList.join('\n') + '\n';
@@ -68,8 +68,9 @@ chrome.runtime.onMessage.addListener(
 
 // Update view
 // 
-function populateTaskList(tasks,blocked) {
-	var list = document.querySelectorAll('ul')[0];
+function populateTaskList(tasks,completedTasks,blocked) {
+	// var list = document.querySelectorAll('ul')[0];
+	var list = document.querySelector('.taskList');
 	list.innerHTML = '';
 	document.querySelector('.blockURLsUI').style.display = 'none';
 	if ( tasks.length == 0 ) {
@@ -109,7 +110,7 @@ function populateTaskList(tasks,blocked) {
 		list.appendChild(li);
 	});
 
-	document.querySelectorAll('li').forEach(function(i) {
+	document.querySelectorAll('.taskList li').forEach(function(i) {
 		i.addEventListener('click',function() {
 			i.style.display = 'none';
 			var taskText = i.querySelector('.task-div');
@@ -123,6 +124,26 @@ function populateTaskList(tasks,blocked) {
 		onEnd: function(evt){ chrome.runtime.sendMessage({ 'action': 'reorder', 'oldIndex': evt.oldIndex, 'newIndex': evt.newIndex });
 		}
 	});
+
+	// now the completed tasks list
+	if ( completedTasks.length > 0 ) {
+
+		console.log("yes, we've completed something");
+
+		var doneList = document.querySelector('.completedTaskList');
+		doneList.innerHTML = '';
+		completedTasks.forEach(function(i) {
+			console.log(i);
+			var li = document.createElement('li');
+			li.innerHTML = "✓ " + i;
+			li.classList.add('completed-task');
+
+			doneList.appendChild(li);
+		});
+	} else {
+		var doneList = document.querySelector('.completedTaskList');
+		doneList.innerHTML = '';
+	}
 
 }
 
