@@ -8,6 +8,8 @@
 
 The next day (specifically, right after midnight), when you next open a window or tab, the tasks will reappear.  They are *daily* tasks, after all. If you want to get rid of a task forever (I mean, like, if you really want to stop feeding the cat, ok) then hover over the task and you will see a little link titled "Delete Permanently"
 
+**New in Version 1.1**: Completed tasks are now listed below uncompleted tasks, as a reminder of how awesome you've been today.
+
 ## Those links at the bottom
 
 * **Add Task** - That's how you add new tasks to your Daily Task list
@@ -40,6 +42,6 @@ But hey, if you want to roll the dice (or 5 star this thing), it's [on the Chrom
 
 ## Product Roadmap
  
-This product is finished.  New versions will be pushed if bugs are found.  If you want more features, fork.
+<strike>This product is finished.  New versions will be pushed if bugs are found.  If you want more features, fork.</strike> What was I thinking? Software is never finished.
 
 Hope you find this extension useful.  Studies show extended use makes thoughtless surfing up to *37% less guilt inducing*!
