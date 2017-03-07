@@ -8,7 +8,11 @@
 
 The next day (specifically, right after midnight), when you next open a window or tab, the tasks will reappear.  They are *daily* tasks, after all. If you want to get rid of a task forever (I mean, like, if you really want to stop feeding the cat, ok) then hover over the task and you will see a little link titled "Delete Permanently"
 
-**New in Version 1.1**: Completed tasks are now listed below uncompleted tasks, as a reminder of how awesome you've been today.
+**New in Version 1.1**: 
+
+* Completed tasks are now listed below uncompleted tasks, as a reminder of how awesome you've been today.
+* You can drag tasks to reorder them.  **NOTE**: You can only permanently change the task order if no tasks have been completed that day.
+
 
 ## Those links at the bottom
 
