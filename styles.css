@@ -34,6 +34,16 @@ li:hover {
 }
 .completed-task {
 	background-color: rgba(0,255,0,0.25);
+	border: none;
+}
+.completed-task:hover {
+	background-color: rgba(0,255,0,0.25);
+	border: none;
+
+}
+.completed-tasks-title {
+	text-align: center;
+	text-decoration: underline;	
 }
 a {
 	font-size: 18px;

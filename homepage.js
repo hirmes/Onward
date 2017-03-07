@@ -1,5 +1,32 @@
 // homepage.js is loaded by homepage.html and handles page rendering and user events
 
+// Utils
+// 
+function validateBlockedSiteList(blockedListString) {
+	var blockedListArray = blockedListString.split('\n'),
+		allClear = true,
+		regextest;
+
+	blockedListArray.forEach(function(i) {
+		// from https://jsfiddle.net/tamerzg/qh2tao9v/
+		regextest = /(?:(?:\*|http|https|file|ftp|chrome-extension):\/\/(?:\*|\*\.[^\/\*]+|[^\/\*]+)?(?:\/.*))|<all_urls>/.test(i);
+		if (regextest)  {
+			// good
+		} else {
+			allClear = false;
+		}
+	});
+	if (allClear)  {
+		document.querySelector('.blockURLsUI').style.display = 'none';
+		chrome.runtime.sendMessage({
+			'updateBlockedList': blockedListString.split('\n')
+		});
+
+	} else {
+		alert("There's an error in the way you typed the list of blocked sites.");
+	}
+}
+
 // Set up view and events
 // 
 var allTasksComplete = document.querySelector('.all-tasks-complete');
@@ -40,7 +67,7 @@ document.querySelector('.addTaskSubmit').addEventListener('click', function() {
 document.querySelector('.blockedURLsFormSubmit').addEventListener('click', function() {
 	var blockedListString = document.querySelector('.blockerURLsTextArea').value;
 	blockedListString = blockedListString.trim();
-	chrome.runtime.sendMessage({'updateBlockedList': blockedListString.split('\n')});
+	validateBlockedSiteList(blockedListString);
 });
 
 // Incoming messages from extension_logic.js
@@ -128,7 +155,7 @@ function populateTaskList(tasks,completedTasks,blocked) {
 	// now the completed tasks list
 	if ( completedTasks.length > 0 ) {
 
-		console.log("yes, we've completed something");
+		document.querySelector('.completed-tasks-title').style.display = '';
 
 		var doneList = document.querySelector('.completedTaskList');
 		doneList.innerHTML = '';
@@ -143,6 +170,7 @@ function populateTaskList(tasks,completedTasks,blocked) {
 	} else {
 		var doneList = document.querySelector('.completedTaskList');
 		doneList.innerHTML = '';
+		document.querySelector('.completed-tasks-title').style.display = 'none';
 	}
 
 }
