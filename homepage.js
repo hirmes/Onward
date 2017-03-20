@@ -10,13 +10,15 @@ function validateBlockedSiteList(blockedListString) {
 	blockedListArray.forEach(function(i) {
 		// from https://jsfiddle.net/tamerzg/qh2tao9v/
 		regextest = /(?:(?:\*|http|https|file|ftp|chrome-extension):\/\/(?:\*|\*\.[^\/\*]+|[^\/\*]+)?(?:\/.*))|<all_urls>/.test(i);
-		if (regextest)  {
-			// good
+		if ( regextest ) {
+			console.log("passed regextest");
 		} else {
+			console.log("failed regextest");
 			allClear = false;
 		}
 	});
-	if (allClear)  {
+	
+	if (allClear) {
 		document.querySelector('.blockURLsUI').style.display = 'none';
 		chrome.runtime.sendMessage({
 			'updateBlockedList': blockedListString.split('\n')
@@ -26,6 +28,7 @@ function validateBlockedSiteList(blockedListString) {
 		alert("There's an error in the way you typed the list of blocked sites.");
 	}
 }
+
 
 // Set up view and events
 // 
@@ -96,7 +99,6 @@ chrome.runtime.onMessage.addListener(
 // Update view
 // 
 function populateTaskList(tasks,completedTasks,blocked) {
-	// var list = document.querySelectorAll('ul')[0];
 	var list = document.querySelector('.taskList');
 	list.innerHTML = '';
 	document.querySelector('.blockURLsUI').style.display = 'none';
@@ -141,7 +143,7 @@ function populateTaskList(tasks,completedTasks,blocked) {
 		i.addEventListener('click',function() {
 			i.style.display = 'none';
 			var taskText = i.querySelector('.task-div');
-			chrome.runtime.sendMessage({'taskCompleted': taskText.innerHTML});
+			chrome.runtime.sendMessage({'taskCompleted': taskText.innerText});
 		});
 	});
 	document.querySelector('.blockerURLsTextArea').value = blocked.join('\n') + '\n';
@@ -160,9 +162,8 @@ function populateTaskList(tasks,completedTasks,blocked) {
 		var doneList = document.querySelector('.completedTaskList');
 		doneList.innerHTML = '';
 		completedTasks.forEach(function(i) {
-			console.log(i);
 			var li = document.createElement('li');
-			li.innerHTML = "✓ " + i;
+			li.innerHTML = "&#10003; " + i; // check mark
 			li.classList.add('completed-task');
 
 			doneList.appendChild(li);

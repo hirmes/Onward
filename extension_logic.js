@@ -76,10 +76,15 @@ function addTask(task) {
 // It will come back tomorrow.
 //
 function completeTask(task) {
-	task = unescape(task);
 	chrome.storage.local.get('todaysTaskArray', function(returnValue) {
 		var tasks = returnValue.todaysTaskArray,
 			index = tasks.indexOf(task);
+
+		if ( index == -1 ) {
+			console.log("completeTask error: " + task + " not found");
+			return;
+		}
+
 		tasks.splice(index, 1);
 		chrome.storage.local.set({'todaysTaskArray':tasks}, function() {
 			sendTasksToPage(tasks);
@@ -97,6 +102,10 @@ function deleteTask(task) {
 	chrome.storage.local.get('dailyTaskArray', function(returnValue) {
 		var tasks = returnValue.dailyTaskArray,
 			index = tasks.indexOf(task);
+		if ( index == - 1 ) {
+			console.log("deleteTask error: " + task + " not found");
+			return;
+		}
 		tasks.splice(index, 1);
 		if ( tasks.length == 0 ) {
 			tasks = [kFirstRunTaskMsg];
@@ -174,8 +183,7 @@ function turnOnBlocking() {
 	chrome.runtime.sendMessage({'blockingStatus': 'on' });
 	chrome.storage.local.get('blockedSitesArray', function(returnValue) {
 		chrome.webRequest.onBeforeRequest.addListener( blockSites, { urls: returnValue.blockedSitesArray }, ['blocking'] );
-		console.log("error?");
-		console.log(chrome.runtime.lastError);
+		// console.log(chrome.runtime.lastError); // not working
 	});
 }
 
