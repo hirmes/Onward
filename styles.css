@@ -39,6 +39,9 @@ li:hover {
 .completed-task:hover {
 	background-color: rgba(0,255,0,0.25);
 	border: none;
+	text-shadow: 1px 1px 1px #222;
+	cursor: default;
+	color: #FFF;
 
 }
 .completed-tasks-title {
